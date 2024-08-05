@@ -3,6 +3,7 @@
 
 :root {
     --primary: #fe2c55;
+    --black: #161823;
     // default layout
     --default-layout-width: 1150px;
     --default-layout-header-height: 60px;
@@ -23,8 +24,17 @@ body {
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizespeed;
+    color: var(--black);
 }
 
-.flex {
-    display: flex;
+button,
+input,
+[tabindex] {
+    border: none;
+    outline: none;
+}
+
+a[href] {
+    color: var(--black);
+    text-decoration: none;
 }

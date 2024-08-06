@@ -1,0 +1,21 @@
+//menu
+.more-result {
+    width: 223px;
+
+    .menu-items {
+        margin-left: 0px;
+    }
+}
+
+.menu-popper {
+    padding-bottom: 8px;
+}
+
+.menu-items {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 10px 8px 10px 16px;
+    &:hover {
+        background: rgba(22, 24, 35, 0.1);
+    }
+}

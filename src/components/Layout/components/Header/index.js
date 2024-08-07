@@ -8,7 +8,7 @@ import {
     faEllipsisVertical,
     faEarthAsia,
     faCircleQuestion,
-    faKeyboard,
+    faMoon,
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 
@@ -19,6 +19,7 @@ import images from '~/assets/images';
 import { Wrapper as PopperWrapper } from '~/components/Propper';
 import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Propper/Menu';
+import { type } from '@testing-library/user-event/dist/type';
 
 const cx = classNames.bind(styles);
 
@@ -26,7 +27,21 @@ const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
         title: 'English',
-        to: '/english',
+        subItem: {
+            title: 'Languege',
+            data: [
+                {
+                    type: 'languege',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'languege',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+            ],
+        },
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -34,9 +49,9 @@ const MENU_ITEMS = [
         to: '/feadback',
     },
     {
-        icon: <FontAwesomeIcon icon={faKeyboard} />,
-        title: 'Keyboard shortcuts',
-        to: '',
+        icon: <FontAwesomeIcon icon={faMoon} />,
+        title: 'Dark Mode',
+        to: '/darkmode',
     },
 ];
 
@@ -45,9 +60,21 @@ function Header() {
 
     useEffect(() => {
         setTimeout(() => {
-            setSearchResult(['React', 'JavaScript', 'Node.js', 'MongoDB', 'Express.js']);
+            setSearchResult([]);
         }, 2000);
     });
+
+    // xử lý logic
+    function handleChange(menuItem) {
+        switch (menuItem.type) {
+            case 'languege':
+                // xử lý logic cho menu Languege
+                break;
+            default:
+                break;
+        }
+    }
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -86,7 +113,7 @@ function Header() {
                     <Button primary rightIcon={<FontAwesomeIcon icon={faSignIn} />}>
                         Log in
                     </Button>
-                    <Menu items={MENU_ITEMS}>
+                    <Menu items={MENU_ITEMS} onChange={handleChange}>
                         <button className={cx('more-btn')}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </button>

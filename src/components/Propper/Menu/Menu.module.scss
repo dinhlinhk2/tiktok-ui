@@ -1,4 +1,27 @@
 //menu
+
+.header {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 50px;
+    margin-top: -8px;
+}
+
+.header-btn {
+    width: 20px;
+    height: 100%;
+    background: transparent;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .more-result {
     width: 223px;
 
@@ -15,6 +38,7 @@
     width: 100%;
     justify-content: flex-start;
     padding: 10px 8px 10px 16px;
+    line-height: 2rem;
     &:hover {
         background: rgba(22, 24, 35, 0.1);
     }

@@ -12,10 +12,10 @@ const defaultFn = () => {};
 function Menu({ items = [], children, onChange = defaultFn }) {
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
-    useEffect(() => {
-        console.log(history);
-        console.log(current);
-    }, [history]);
+    // useEffect(() => {
+    //     console.log(history);
+    //     console.log(current);
+    // }, [history]);
 
     const renderMenuItems = () => {
         return current.data.map((item, index) => {

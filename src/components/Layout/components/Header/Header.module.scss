@@ -96,6 +96,7 @@
     }
 }
 
+// button khi login/logout
 .actions {
     display: flex;
     align-items: center;
@@ -107,4 +108,25 @@
     cursor: pointer;
     background: transparent;
     padding: 8px;
+}
+
+//user
+
+.icon-action {
+    margin-left: 16px;
+    cursor: pointer;
+    padding: 3px 3px 0px;
+    margin-bottom: 2px;
+    position: relative;
+    font-size: 2rem;
+    color: rgb(22, 24, 35);
+    background: transparent;
+}
+
+.user-avt {
+    width: 32px;
+    height: 32px;
+    border-radius: 50px;
+    object-fit: cover;
+    margin-left: 12px;
 }

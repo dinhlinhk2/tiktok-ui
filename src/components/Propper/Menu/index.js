@@ -9,7 +9,7 @@ import MenuHeader from './Header';
 const cx = classNames.bind(styles);
 
 const defaultFn = () => {};
-function Menu({ items = [], children, onChange = defaultFn }) {
+function Menu({ items = [], children, onChange = defaultFn, title }) {
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
     useEffect(() => {
@@ -41,15 +41,19 @@ function Menu({ items = [], children, onChange = defaultFn }) {
         <Tippy
             placement="bottom-end"
             delay={[0, 500]}
+            offset={[12, 8]}
             visible
             interactive
+            onHide={() => {
+                setHistory((pre) => pre.slice(0, 1));
+            }}
             content="More-Btn"
             render={(attrs) => (
                 <div className={cx('more-result')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx('menu-popper')}>
                         {history.length > 1 && (
                             <MenuHeader
-                                title="Language"
+                                title={title}
                                 onBack={() => {
                                     setHistory((pre) => pre.slice(0, pre.length - 1));
                                 }}

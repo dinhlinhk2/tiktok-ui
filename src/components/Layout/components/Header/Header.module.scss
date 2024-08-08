@@ -121,6 +121,26 @@
     font-size: 2rem;
     color: rgb(22, 24, 35);
     background: transparent;
+    position: relative;
+    & .sub-icon {
+        position: absolute;
+        color: #fff;
+        font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 18px;
+        left: 16px;
+        background: rgb(255, 59, 92);
+        min-width: 20px;
+        height: 20px;
+        display: flex;
+        top: -20%;
+        padding: 0px 6px;
+        border-radius: 20px;
+    }
+    .inbox-icon {
+        top: -3px;
+    }
 }
 
 .user-avt {
@@ -129,4 +149,5 @@
     border-radius: 50px;
     object-fit: cover;
     margin-left: 12px;
+    cursor: pointer;
 }

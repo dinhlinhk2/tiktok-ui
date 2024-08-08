@@ -1,21 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faCircleXmark,
-    faSpinner,
-    faMagnifyingGlass,
-    faSignIn,
-    faEllipsisVertical,
-    faEarthAsia,
-    faCircleQuestion,
-    faMoon,
-    faUpload,
-    faInbox,
-    faUser,
-    faGear,
-    faSackDollar,
-    faHouseUser,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faSpinner, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import TippyHeadless from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
@@ -27,13 +12,27 @@ import images from '~/assets/images';
 import { Wrapper as PopperWrapper } from '~/components/Propper';
 import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Propper/Menu';
-import { faMessage } from '@fortawesome/free-regular-svg-icons';
+import {
+    CoinIcon,
+    DarkMode,
+    HelpIcon,
+    InboxIcon,
+    LanguageIcon,
+    LogoutIcon,
+    MessageIcon,
+    ProfileIcon,
+    SearchIcon,
+    SettingsIcon,
+    ShortcutsIcon,
+    UploadIcon,
+} from '~/components/Icons';
+import Image from '~/components/Images';
 
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
     {
-        icon: <FontAwesomeIcon icon={faEarthAsia} />,
+        icon: <LanguageIcon />,
         title: 'English',
         subItem: {
             title: 'Languege',
@@ -52,12 +51,12 @@ const MENU_ITEMS = [
         },
     },
     {
-        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+        icon: <HelpIcon />,
         title: 'Feedback and help',
         to: '/feadback',
     },
     {
-        icon: <FontAwesomeIcon icon={faMoon} />,
+        icon: <DarkMode />,
         title: 'Dark Mode',
         to: '/darkmode',
     },
@@ -65,30 +64,30 @@ const MENU_ITEMS = [
 
 const userMenu = [
     {
-        icon: <FontAwesomeIcon icon={faUser} />,
+        icon: <ProfileIcon />,
         title: 'View profile',
         to: '/profile',
     },
     {
-        icon: <FontAwesomeIcon icon={faSackDollar} />,
+        icon: <CoinIcon />,
         title: 'Get Coins',
         to: '/getcoins',
     },
     {
-        icon: <FontAwesomeIcon icon={faHouseUser} />,
+        icon: <ShortcutsIcon />,
         title: 'Create tools',
         subItem: {
             title: 'Create tools',
             data: [
                 {
-                    icon: <FontAwesomeIcon icon={faHouseUser} />,
+                    icon: <ShortcutsIcon />,
                     type: 'create_tool',
                     code: 'live_studio',
                     title: 'LIVE Studio',
                     separate: true,
                 },
                 {
-                    icon: <FontAwesomeIcon icon={faHouseUser} />,
+                    icon: <ShortcutsIcon />,
                     type: 'create_tool',
                     code: 'live_creator_hub',
                     title: 'LIVE Creator Hub',
@@ -97,13 +96,13 @@ const userMenu = [
         },
     },
     {
-        icon: <FontAwesomeIcon icon={faGear} />,
+        icon: <SettingsIcon />,
         title: 'Setting',
         to: '/setting',
     },
     ...MENU_ITEMS,
     {
-        icon: <FontAwesomeIcon icon={faSignIn} />,
+        icon: <LogoutIcon />,
         title: 'Log out',
         to: '/logout',
         separate: true,
@@ -160,7 +159,7 @@ function Header() {
                         <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
 
                         <button className={cx('search-button')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            <SearchIcon />
                         </button>
                     </div>
                 </TippyHeadless>
@@ -168,45 +167,40 @@ function Header() {
                 <div className={cx('actions')}>
                     {user ? (
                         <>
-                            <Tippy trigger="click" content="Upload video" placement="bottom">
+                            <Tippy content="Upload video" placement="bottom">
                                 <button className={cx('icon-action')}>
-                                    <FontAwesomeIcon icon={faUpload} />
+                                    <UploadIcon />
                                 </button>
                             </Tippy>
                             <button className={cx('icon-action')}>
-                                <FontAwesomeIcon icon={faMessage} />
+                                <MessageIcon />
+                                <p className={cx('sub-icon')}>2</p>
                             </button>
                             <button className={cx('icon-action')}>
-                                <FontAwesomeIcon icon={faInbox} />
+                                <InboxIcon />
+                                <p className={cx('sub-icon', 'inbox-icon')}>29</p>
                             </button>
                         </>
                     ) : (
                         <>
                             <Button text>Upload</Button>
-                            <Button primary rightIcon={<FontAwesomeIcon icon={faSignIn} />}>
-                                Log in
-                            </Button>
+                            <Button primary>Log in</Button>
                         </>
                     )}
-                    {user ? (
-                        <>
-                            <Menu items={userMenu} title="Create tools">
-                                <img
-                                    src="https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/449589969_4072352503033632_6153515065509786941_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=5UEqauYUdxUQ7kNvgGLn4qj&_nc_ht=scontent.fsgn5-9.fna&oh=00_AYA6sUFBYdkiTTtrbg_LLTxoy_9AUm6Oa8XaWaYbiTyhVw&oe=66B6CA05"
-                                    className={cx('user-avt')}
-                                    alt="NguyenDinhLinh"
-                                />
-                            </Menu>
-                        </>
-                    ) : (
-                        <>
-                            <Menu items={MENU_ITEMS} onChange={handleChange} title="Create tools">
-                                <button className={cx('more-btn')}>
-                                    <FontAwesomeIcon icon={faEllipsisVertical} />
-                                </button>
-                            </Menu>
-                        </>
-                    )}
+                    <Menu items={user ? userMenu : MENU_ITEMS} onChange={handleChange}>
+                        {user ? (
+                            <Image
+                                src="https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/449589969_4072352503033632_6153515065509786941_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=5UEqauYUdxUQ7kNvgGLn4qj&_nc_ht=scontent.fsgn5-9.fna&oh=00_AYA6sUFBYdkiTTtrbg_LLTxoy_9AUm6Oa8XaWaYbiTyhVw&oe=66B6CA05"
+                                className={cx('user-avt')}
+                                alt="NguyenDinhLinh"
+                                fallback="file:///C:/Users/Admin/Downloads/emiu.jpg"
+                            />
+                        ) : (
+                            <button className={cx('more-btn')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </button>
+                        )}
+                    </Menu>
                 </div>
             </div>
         </header>

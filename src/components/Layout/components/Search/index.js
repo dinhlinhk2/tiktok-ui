@@ -14,14 +14,28 @@ const Search = () => {
     const [seacrhValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(true);
+    const [loading, setLoading] = useState();
+
     const [placeholder, setPlaceholder] = useState('Search...');
     const inputRef = useRef();
 
     useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([1]);
-        }, 1000);
-    }, []);
+        if (!seacrhValue) {
+            setSearchResult([]);
+            return;
+        }
+        setLoading(true);
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(seacrhValue)}&type=less`)
+            .then((response) => response.json())
+            .then((response) => {
+                setSearchResult(response.data);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                setLoading(false);
+            });
+    }, [seacrhValue]);
 
     function handleOutside() {
         setShowResult(false);
@@ -32,6 +46,14 @@ const Search = () => {
         setSearchResult([]);
         inputRef.current.focus();
     }
+    function handleChangeSearchValue(e) {
+        const value = e.target.value;
+
+        if (!/^\s+/.test(value) && !/\s{2,}/.test(value)) {
+            setSearchValue(value);
+        }
+    }
+
     return (
         <TippyHeadless
             onClickOutside={handleOutside}
@@ -42,10 +64,9 @@ const Search = () => {
                 <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                     <PopperWrapper>
                         <h4 className={cx('search-title')}>Accounts</h4>
-                        <AccountItem />
-                        <AccountItem />
-                        <AccountItem />
-                        <AccountItem />
+                        {searchResult.map((item) => (
+                            <AccountItem key={item.id} data={item} />
+                        ))}
                     </PopperWrapper>
                 </div>
             )}
@@ -60,14 +81,14 @@ const Search = () => {
                     placeholder={placeholder}
                     spellCheck={false}
                     value={seacrhValue}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={handleChangeSearchValue}
                 />
-                {!!setSearchValue && (
+                {!!seacrhValue && !loading && (
                     <button className={cx('clear')} onClick={handleClearSearch}>
                         <FontAwesomeIcon icon={faCircleXmark} />
                     </button>
                 )}
-                {/* <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> */}
+                {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
                 <button className={cx('search-button')}>
                     <SearchIcon />
                 </button>

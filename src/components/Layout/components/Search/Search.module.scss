@@ -58,6 +58,19 @@
     color: rgba(22, 24, 35, 0.34);
 }
 
+.loading {
+    animation: snipper 1s linear infinite;
+}
+
+@keyframes snipper {
+    to {
+        transform: translateY(-50%) rotate(0deg);
+    }
+    from {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
 .search-button {
     width: var(--search-btn-width);
     height: 100%;

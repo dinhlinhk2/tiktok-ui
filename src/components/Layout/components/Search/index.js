@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import TippyHeadless from '@tippyjs/react/headless';
 
+import { useDebounce } from '~/hooks';
 import { SearchIcon } from '~/components/Icons/index';
 import { Wrapper as PopperWrapper } from '~/components/Propper';
 import AccountItem from '~/components/AccountItem';
@@ -16,16 +17,18 @@ const Search = () => {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState();
 
+    const debouncedValue = useDebounce(seacrhValue, 500);
+
     const [placeholder, setPlaceholder] = useState('Search...');
     const inputRef = useRef();
 
     useEffect(() => {
-        if (!seacrhValue) {
+        if (!debouncedValue) {
             setSearchResult([]);
             return;
         }
         setLoading(true);
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(seacrhValue)}&type=less`)
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debouncedValue)}&type=less`)
             .then((response) => response.json())
             .then((response) => {
                 setSearchResult(response.data);
@@ -35,7 +38,7 @@ const Search = () => {
                 console.error('Error:', error);
                 setLoading(false);
             });
-    }, [seacrhValue]);
+    }, [debouncedValue]);
 
     function handleOutside() {
         setShowResult(false);

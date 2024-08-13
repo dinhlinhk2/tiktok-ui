@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import TippyHeadless from '@tippyjs/react/headless';
 
+import * as searchServices from '~/apiServices/searchServices';
 import { useDebounce } from '~/hooks';
 import { SearchIcon } from '~/components/Icons/index';
 import { Wrapper as PopperWrapper } from '~/components/Propper';
@@ -27,17 +28,14 @@ const Search = () => {
             setSearchResult([]);
             return;
         }
-        setLoading(true);
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debouncedValue)}&type=less`)
-            .then((response) => response.json())
-            .then((response) => {
-                setSearchResult(response.data);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                setLoading(false);
-            });
+
+        const fetchApi = async () => {
+            setLoading(true);
+            const result = await searchServices.search(debouncedValue);
+            setSearchResult(result);
+            setLoading(false);
+        };
+        fetchApi();
     }, [debouncedValue]);
 
     function handleOutside() {

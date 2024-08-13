@@ -37,6 +37,7 @@ const MENU_ITEMS = [
                     type: 'languege',
                     code: 'en',
                     title: 'Englishs',
+                    separate: true,
                 },
                 {
                     type: 'languege',
@@ -152,7 +153,7 @@ function Header() {
                     <Menu items={user ? userMenu : MENU_ITEMS} onChange={handleChange}>
                         {user ? (
                             <Image
-                                src="https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/449589969_4072352503033632_6153515065509786941_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=5UEqauYUdxUQ7kNvgGLn4qj&_nc_ht=scontent.fsgn5-9.fna&oh=00_AYA6sUFBYdkiTTtrbg_LLTxoy_9AUm6Oa8XaWaYbiTyhVw&oe=66B6CA05"
+                                src="https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/449589969_4072352503033632_6153515065509786941_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=EzMgZMpKrwAQ7kNvgGVDGae&_nc_ht=scontent.fsgn5-9.fna&oh=00_AYAM0n6QgfJhka8gzAPFY8T_C_gz6Ul-HC9Hvi5Mvo550Q&oe=66C0E585"
                                 className={cx('user-avt')}
                                 alt="NguyenDinhLinh"
                                 fallback="file:///C:/Users/Admin/Downloads/emiu.jpg"

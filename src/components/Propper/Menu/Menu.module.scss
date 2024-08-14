@@ -6,6 +6,7 @@
     position: relative;
     height: 50px;
     margin-top: -8px;
+    flex-shrink: 0;
 }
 
 .header-btn {
@@ -31,17 +32,12 @@
     }
 }
 
-.menu-popper {
-    padding-bottom: 8px;
-}
-
 .menu-items {
     width: 100%;
     justify-content: flex-start;
     padding: 10px 8px 10px 16px;
     line-height: 2rem;
     border-radius: 0px;
-
     &:hover {
         background: rgba(22, 24, 35, 0.1);
         border-radius: 8px;
@@ -49,4 +45,8 @@
     &.separate {
         border-top: 1px solid rgba(22, 24, 35, 0.12);
     }
+}
+
+.scroll-menu {
+    overflow: auto;
 }

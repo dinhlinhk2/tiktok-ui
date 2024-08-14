@@ -56,45 +56,49 @@ const Search = () => {
     }
 
     return (
-        <TippyHeadless
-            onClickOutside={handleOutside}
-            interactive
-            visible={showResult && searchResult.length > 0}
-            content="Tìm kiếm"
-            render={(attrs) => (
-                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>
-                        <h4 className={cx('search-title')}>Accounts</h4>
-                        {searchResult.map((item) => (
-                            <AccountItem key={item.id} data={item} />
-                        ))}
-                    </PopperWrapper>
-                </div>
-            )}
-        >
-            <div className={cx('search')}>
-                <input
-                    onFocus={() => {
-                        setShowResult(true);
-                        setPlaceholder('Your search...');
-                    }}
-                    ref={inputRef}
-                    placeholder={placeholder}
-                    spellCheck={false}
-                    value={seacrhValue}
-                    onChange={handleChangeSearchValue}
-                />
-                {!!seacrhValue && !loading && (
-                    <button className={cx('clear')} onClick={handleClearSearch}>
-                        <FontAwesomeIcon icon={faCircleXmark} />
-                    </button>
+        //Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context.
+        <div>
+            <TippyHeadless
+                appendTo={() => document.body}
+                onClickOutside={handleOutside}
+                interactive
+                visible={showResult && searchResult.length > 0}
+                content="Tìm kiếm"
+                render={(attrs) => (
+                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                        <PopperWrapper>
+                            <h4 className={cx('search-title')}>Accounts</h4>
+                            {searchResult.map((item) => (
+                                <AccountItem key={item.id} data={item} />
+                            ))}
+                        </PopperWrapper>
+                    </div>
                 )}
-                {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-                <button className={cx('search-button')} onMouseDown={(e) => e.preventDefault()}>
-                    <SearchIcon />
-                </button>
-            </div>
-        </TippyHeadless>
+            >
+                <div className={cx('search')}>
+                    <input
+                        onFocus={() => {
+                            setShowResult(true);
+                            setPlaceholder('Your search...');
+                        }}
+                        ref={inputRef}
+                        placeholder={placeholder}
+                        spellCheck={false}
+                        value={seacrhValue}
+                        onChange={handleChangeSearchValue}
+                    />
+                    {!!seacrhValue && !loading && (
+                        <button className={cx('clear')} onClick={handleClearSearch}>
+                            <FontAwesomeIcon icon={faCircleXmark} />
+                        </button>
+                    )}
+                    {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
+                    <button className={cx('search-button')} onMouseDown={(e) => e.preventDefault()}>
+                        <SearchIcon />
+                    </button>
+                </div>
+            </TippyHeadless>
+        </div>
     );
 };
 

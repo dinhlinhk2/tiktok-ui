@@ -2,12 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
-
-import Button from '~/components/Button';
-import classNames from 'classnames/bind';
-import styles from './Header.module.scss';
-import images from '~/assets/images';
-import Menu from '~/components/Propper/Menu';
 import {
     CoinIcon,
     DarkMode,
@@ -21,8 +15,16 @@ import {
     ShortcutsIcon,
     UploadIcon,
 } from '~/components/Icons';
+import { Link } from 'react-router-dom';
+
+import Button from '~/components/Button';
+import classNames from 'classnames/bind';
+import styles from './Header.module.scss';
+import images from '~/assets/images';
+import Menu from '~/components/Propper/Menu';
 import Image from '~/components/Images';
 import Search from '../Search';
+import routesConfig from '~/components/config/routes';
 
 const cx = classNames.bind(styles);
 
@@ -123,7 +125,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={images.logo} alt="logo"></img>
+                <Link to={routesConfig.home} className={cx('logo-link')}>
+                    <img src={images.logo} alt="logo"></img>
+                </Link>
 
                 <Search />
 

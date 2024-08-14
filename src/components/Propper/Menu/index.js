@@ -1,6 +1,6 @@
 import Tippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Wrapper as PopperWrapper } from '~/components/Propper';
 import styles from './Menu.module.scss';
@@ -9,7 +9,7 @@ import MenuHeader from './Header';
 const cx = classNames.bind(styles);
 
 const defaultFn = () => {};
-function Menu({ items = [], children, onChange = defaultFn }) {
+function Menu({ items = [], hideOnClick = false, children, onChange = defaultFn }) {
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
     // useEffect(() => {
@@ -39,6 +39,7 @@ function Menu({ items = [], children, onChange = defaultFn }) {
 
     return (
         <Tippy
+            hideOnClick={hideOnClick}
             placement="bottom-end"
             delay={[0, 500]}
             offset={[12, 8]}

@@ -85,7 +85,7 @@ export const ProfileIcon = ({ width = '2rem', height = '2rem', className }) => (
 
 export const CoinIcon = ({ width = '2rem', height = '2rem', className }) => (
     <svg
-        class={className}
+        className={className}
         width={width}
         data-e2e=""
         height={height}
@@ -159,7 +159,7 @@ export const HelpIcon = ({ width = '2rem', height = '2rem', className }) => (
 
 export const ShortcutsIcon = ({ width = '2rem', height = '2rem', className }) => (
     <svg
-        class={className}
+        className={className}
         width={width}
         data-e2e=""
         height={height}
@@ -194,7 +194,7 @@ export const LogoutIcon = ({ width = '2rem', height = '2rem', className }) => (
 
 export const DarkMode = ({ width = '2rem', height = '2rem', className }) => (
     <svg
-        class={className}
+        className={className}
         width={width}
         data-e2e=""
         height={height}

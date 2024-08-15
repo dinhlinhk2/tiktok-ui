@@ -15,8 +15,8 @@ const cx = classNames.bind(styles);
 const Search = () => {
     const [seacrhValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
-    const [showResult, setShowResult] = useState(true);
-    const [loading, setLoading] = useState();
+    const [showResult, setShowResult] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const debouncedValue = useDebounce(seacrhValue, 500);
 
@@ -69,7 +69,7 @@ const Search = () => {
                         <PopperWrapper>
                             <h4 className={cx('search-title')}>Accounts</h4>
                             {searchResult.map((item) => (
-                                <AccountItem key={item.id} data={item} />
+                                <AccountItem key={item.id} data={item} onClick={handleClearSearch} />
                             ))}
                         </PopperWrapper>
                     </div>

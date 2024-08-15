@@ -4,12 +4,13 @@
     justify-content: center;
     font-size: 1.6rem;
     font-weight: 700;
-    padding: 6px 8px;
-    min-width: 100%;
+    padding: 9px 16px;
+    min-width: 100px;
     cursor: pointer;
     background-color: #fff;
     border: 1px solid transparent;
     user-select: none;
+    border-radius: 5px;
 
     &.disabled {
         opacity: 0.5;

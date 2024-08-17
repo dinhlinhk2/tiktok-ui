@@ -1,0 +1,46 @@
+.account-item {
+    padding: 1.2rem 2rem 2rem 2rem;
+    width: 320px;
+}
+.header-preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.avatar {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 5rem;
+    object-fit: cover;
+}
+.icon {
+    color: rgb(32, 213, 236);
+    font-size: 1.4rem;
+    margin-left: 4px;
+}
+
+.analytics {
+    margin-top: 8px;
+}
+
+.value {
+    font-weight: 700;
+    margin-right: 6px;
+    font-size: 17px;
+    line-height: 20px;
+    display: inline-block;
+}
+
+.likes,
+.follower {
+    color: #161823bf;
+    font-family: TikTokDisplayFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-size: 17px;
+    line-height: 20px;
+    display: inline-block;
+}
+.follower {
+    margin-right: 1.2rem;
+}
